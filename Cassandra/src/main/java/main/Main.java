@@ -12,7 +12,7 @@ import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 
 public class Main {
 	public static void main(String[] args) throws ParseException {
-		// Create Keyspace
+		
 		String keyspace = "harry";
 		try (CqlSession session = CqlSession.builder()
 				.addContactPoint(new InetSocketAddress("localhost", 9042))
@@ -20,23 +20,25 @@ public class Main {
 				.withKeyspace(keyspace)
 				.build()) {
 			System.out.println("Connected to Cassandra");
-			//Ejercicio_1(session, "Banana Cavendish", "Deposito Pepe");
-			//Ejercicio_2_Datos(session);
-			//Ejercicio_2(session, "Product A");
-			//Ejercicio_3_Datos(session);
-			//Ejercicio_3(session, 2);
-			//Ejercicio_4_Datos(session);
-			//Ejercicio_4(session, "Producto 1");
-			//Ejercicio_5_Datos(session);
-			//Ejercicio_5(session, 1);
-			//Ejercicio_6_Datos(session);
-			//Ejercicio_6(session);
-			//Ejercicio_7_Datos(session);
-			//Ejercicio_7(session, "Juan Perez");
-			//Ejercicio_8_Datos(session);
-			//Ejercicio_8(session, "Producto A");
-			//Ejercicio_9_Datos(session);
+			/*
+			Ejercicio_1(session, "Banana Cavendish", "Deposito Pepe");
+			Ejercicio_2_Datos(session);
+			Ejercicio_2(session, "Product A");
+			Ejercicio_3_Datos(session);
+			Ejercicio_3(session, 2);
+			Ejercicio_4_Datos(session);
+			Ejercicio_4(session, "Producto 1");
+			Ejercicio_5_Datos(session);
+			Ejercicio_5(session, 1);
+			Ejercicio_6_Datos(session);
+			Ejercicio_6(session);
+			Ejercicio_7_Datos(session);
+			Ejercicio_7(session, "Juan Perez");
+			Ejercicio_8_Datos(session);
+			Ejercicio_8(session, "Producto A");
+			Ejercicio_9_Datos(session);
 			Ejercicio_9(session, "Carlos Ruiz", "2024-03-01 00:00:00", "2024-11-06 09:00:00");
+   			*/
 		}
 		
 	}
@@ -45,11 +47,8 @@ public class Main {
 		
 		 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	        // Parse FechaIni and FechaFin into Date objects
 	        Date fechaIniDate = sdf.parse(FechaIni);
 	        Date fechaFinDate = sdf.parse(FechaFin);
-	        
-	        // Convert Date objects to long (milliseconds since epoch)
 	        long fechaIniMillis = fechaIniDate.getTime();
 	        long fechaFinMillis = fechaFinDate.getTime();
 	        
@@ -89,7 +88,6 @@ public class Main {
 		}
 		
 		try {
-            // Define each insert statement as an individual string variable
             String insert1 = "INSERT INTO PedidosporClienteFechas (idCliente, nombreCliente, idPedido, idProducto, nombreProducto, fechaPedido, estadoEnvio, Cantidad, Precio) VALUES (1, 'Juan Perez', 1001, 201, 'Producto A', '2024-11-01T10:00:00', 'Enviado', 2, 200);";
             String insert2 = "INSERT INTO PedidosporClienteFechas (idCliente, nombreCliente, idPedido, idProducto, nombreProducto, fechaPedido, estadoEnvio, Cantidad, Precio) VALUES (1, 'Juan Perez', 1002, 202, 'Producto B', '2024-11-02T12:30:00', 'Pendiente', 1, 150);";
             String insert3 = "INSERT INTO PedidosporClienteFechas (idCliente, nombreCliente, idPedido, idProducto, nombreProducto, fechaPedido, estadoEnvio, Cantidad, Precio) VALUES (2, 'Maria Lopez', 1003, 203, 'Producto C', '2024-11-03T09:15:00', 'Enviado',5 ,300);";
@@ -98,7 +96,6 @@ public class Main {
             String insert6 = "INSERT INTO PedidosporClienteFechas (idCliente,nombreCliente ,idPedido ,idProducto ,nombreProducto ,fechaPedido ,estadoEnvio ,Cantidad ,Precio ) VALUES (3,'Carlos Ruiz',1006 ,206 ,'Producto F','2024-05-06T11:30:00','Pendiente',2 ,350);";
             String insert7 = "INSERT INTO PedidosporClienteFechas (idCliente,nombreCliente ,idPedido ,idProducto ,nombreProducto ,fechaPedido ,estadoEnvio ,Cantidad ,Precio ) VALUES (4,'Ana Torres',1007 ,207 ,'Producto G','2024-11-07T13:00:00','Enviado' ,1 ,500);";
 
-            // Execute each insert statement
             session.execute(SimpleStatement.newInstance(insert1));
             session.execute(SimpleStatement.newInstance(insert2));
             session.execute(SimpleStatement.newInstance(insert3));
@@ -151,7 +148,6 @@ public class Main {
 		}
 		
 		 try {
-	            // Define each insert statement with timestamps as strings
 	            String insert1 = "INSERT INTO EnviosPorProducto (idProducto, nombreProducto, depositoNombre, idDeposito, estadoEnvio, idEnvio, fechaEnvio, transportista) VALUES (201, 'Producto A', 'Depósito A', 1, 'Enviado', 3001, '2024-11-01 10:00:00', 'Transportista X');";
 	            String insert2 = "INSERT INTO EnviosPorProducto (idProducto, nombreProducto, depositoNombre, idDeposito, estadoEnvio, idEnvio, fechaEnvio, transportista) VALUES (201, 'Producto A', 'Depósito A', 1, 'Pendiente', 3002, '2024-11-02 12:30:00', 'Transportista Y');";
 	            String insert3 = "INSERT INTO EnviosPorProducto (idProducto, nombreProducto, depositoNombre, idDeposito, estadoEnvio, idEnvio, fechaEnvio, transportista) VALUES (202,' Producto B','Depósito A', 1,'Enviado', 3003,'2024-11-03 09:15:00','Transportista Z');";
@@ -162,7 +158,6 @@ public class Main {
 	            String insert8 = "INSERT INTO EnviosPorProducto (idProducto,nombreProducto ,depositoNombre ,idDeposito ,estadoEnvio ,idEnvio ,fechaEnvio ,transportista ) VALUES (205,' Producto E','Depósito D',4,'Enviado',3008,'2024-11-08 15:45:00','Transportista Y');";
 	            String insert9 = "INSERT INTO EnviosPorProducto (idProducto,nombreProducto ,depositoNombre ,idDeposito ,estadoEnvio ,idEnvio ,fechaEnvio ,transportista ) VALUES (203,' Producto C','Depósito D',4,'Pendiente',3009,'2024-11-09 17:30:00','Transportista Z');";
 
-	            // Execute each insert statement
 	            session.execute(SimpleStatement.newInstance(insert1));
 	            session.execute(SimpleStatement.newInstance(insert2));
 	            session.execute(SimpleStatement.newInstance(insert3));
@@ -178,8 +173,6 @@ public class Main {
 	            System.out.println("Error: " + e.getMessage());
 	        }
 	}
-	
-	//Listar todos los pedidos realizados por un cliente específico, incluyendo los detalles de los productos y el estado del envío
 	
 	public static void Ejercicio_7(CqlSession session, String nombreCliente) {
 		
@@ -219,8 +212,7 @@ public class Main {
 		}
 		
 		 try {
-	            // Define each insert statement as an individual string variable
-			 	String insert1 = "INSERT INTO PedidosPorCliente (idCliente, nombreCliente, estadoEnvio, idPedido, idProducto, nombreProducto, deposito, estadoPedido) VALUES (1, 'Juan Perez', 'Enviado', 1001, 201, 'Producto A', 'Depósito A', 'Completo');";
+		    String insert1 = "INSERT INTO PedidosPorCliente (idCliente, nombreCliente, estadoEnvio, idPedido, idProducto, nombreProducto, deposito, estadoPedido) VALUES (1, 'Juan Perez', 'Enviado', 1001, 201, 'Producto A', 'Depósito A', 'Completo');";
 	            String insert2 = "INSERT INTO PedidosPorCliente (idCliente, nombreCliente, estadoEnvio, idPedido, idProducto, nombreProducto, deposito, estadoPedido) VALUES (1, 'Juan Perez', 'Enviado', 1002, 202, 'Producto B', 'Depósito A', 'Completo');";
 	            String insert3 = "INSERT INTO PedidosPorCliente (idCliente, nombreCliente, estadoEnvio, idPedido, idProducto, nombreProducto, deposito, estadoPedido) VALUES (2, 'Maria Lopez', 'Pendiente', 1003, 203, 'Producto C', 'Depósito B', 'Pendiente');";
 	            String insert4 = "INSERT INTO PedidosPorCliente (idCliente, nombreCliente, estadoEnvio, idPedido, idProducto, nombreProducto, deposito, estadoPedido) VALUES (2, 'Maria Lopez', 'Enviado', 1004, 204, 'Producto D', 'Depósito B', 'Completo');";
@@ -228,7 +220,6 @@ public class Main {
 	            String insert6 = "INSERT INTO PedidosPorCliente (idCliente, nombreCliente, estadoEnvio, idPedido, idProducto, nombreProducto, deposito, estadoPedido) VALUES (3,'Carlos Ruiz','Enviado',1006 ,206 ,'Producto F','Depósito C','Completo');";
 	            String insert7 = "INSERT INTO PedidosPorCliente (idCliente,nombreCliente ,estadoEnvio,idPedido,idProducto,nombreProducto,deposito ,estadoPedido ) VALUES (4,'Ana Torres','Pendiente' ,1007 ,207 ,'Producto G','Depósito D','Pendiente');";
 
-	            // Execute each insert statement
 	            session.execute(SimpleStatement.newInstance(insert1));
 	            session.execute(SimpleStatement.newInstance(insert2));
 	            session.execute(SimpleStatement.newInstance(insert3));
@@ -274,7 +265,6 @@ public class Main {
 		}
 		
 	     try {
-	            // Define each insert statement as an individual string variable
 	            String insert1 = "INSERT INTO TotalDepositos (idProducto, nombreProducto, Descripcion, idDeposito, nombreDeposito, ubicacion, stock, Precio) VALUES (101, 'Producto A', 'Descripción A', 1, 'Depósito A', 'Ubicación A', 50, 200);";
 	            String insert2 = "INSERT INTO TotalDepositos (idProducto, nombreProducto, Descripcion, idDeposito, nombreDeposito, ubicacion, stock, Precio) VALUES (102, 'Producto B', 'Descripción B', 1, 'Depósito A', 'Ubicación A', 30, 150);";
 	            String insert3 = "INSERT INTO TotalDepositos (idProducto, nombreProducto, Descripcion, idDeposito, nombreDeposito, ubicacion, stock, Precio) VALUES (103, 'Producto C', 'Descripción C', 2, 'Depósito B', 'Ubicación B', 20, 300);";
@@ -283,7 +273,6 @@ public class Main {
 	            String insert6 = "INSERT INTO TotalDepositos (idProducto, nombreProducto, Descripcion, idDeposito, nombreDeposito, ubicacion, stock, Precio) VALUES (106, 'Producto F', 'Descripción F', 3, 'Depósito C', 'Ubicación C', 15, 350);";
 	            String insert7 = "INSERT INTO TotalDepositos (idProducto, nombreProducto, Descripcion, idDeposito, nombreDeposito, ubicacion, stock, Precio) VALUES (107,' Producto G','Descripción G',4,'Depósito D','Ubicación D',5 ,500);";
 
-	            // Execute each insert statement
 	            session.execute(SimpleStatement.newInstance(insert1));
 	            session.execute(SimpleStatement.newInstance(insert2));
 	            session.execute(SimpleStatement.newInstance(insert3));
@@ -338,7 +327,7 @@ public class Main {
 		}
 		
 		try {
-			// Define each insert statement as an individual string variable
+			
 		    String insert1 = "INSERT INTO ProductosporEnvio (idEnvio, idProducto, nombreProducto) VALUES (1, 101, 'Producto A');";
 		    String insert2 = "INSERT INTO ProductosporEnvio (idEnvio, idProducto, nombreProducto) VALUES (1, 102, 'Producto B');";
 		    String insert3 = "INSERT INTO ProductosporEnvio (idEnvio, idProducto, nombreProducto) VALUES (2, 103, 'Producto C');";
@@ -347,7 +336,6 @@ public class Main {
 		    String insert6 = "INSERT INTO ProductosporEnvio (idEnvio, idProducto, nombreProducto) VALUES (3, 105, 'Producto E');";
 		    String insert7 = "INSERT INTO ProductosporEnvio (idEnvio, idProducto, nombreProducto) VALUES (4, 106, 'Producto F');";
 
-		    // Execute each insert statement
 		    session.execute(SimpleStatement.newInstance(insert1));
 		    session.execute(SimpleStatement.newInstance(insert2));
 		    session.execute(SimpleStatement.newInstance(insert3));
@@ -381,7 +369,6 @@ public class Main {
 		}
 	}
 	
-	// Listar todos los depósitos desde los cuales se ha enviado un producto específico
 	public static void Ejercicio_4_Datos(CqlSession session) {
 		
 		String createTableQuery = "CREATE TABLE IF NOT EXISTS DepositosporProducto (" + 
@@ -401,7 +388,7 @@ public class Main {
 			  System.out.println("Table already exists"); 
 			  }
         try {
-          	String insert1 = "INSERT INTO DepositosporProducto (nombreDeposito, nombreProducto, idProducto, idDeposito) VALUES ('Depósito A', 'Producto 1', 101, 1);";
+            String insert1 = "INSERT INTO DepositosporProducto (nombreDeposito, nombreProducto, idProducto, idDeposito) VALUES ('Depósito A', 'Producto 1', 101, 1);";
             String insert2 = "INSERT INTO DepositosporProducto (nombreDeposito, nombreProducto, idProducto, idDeposito) VALUES ('Depósito A', 'Producto 2', 102, 2);";
             String insert3 = "INSERT INTO DepositosporProducto (nombreDeposito, nombreProducto, idProducto, idDeposito) VALUES ('Depósito B', 'Producto 1', 101, 3);";
             String insert4 = "INSERT INTO DepositosporProducto (nombreDeposito, nombreProducto, idProducto, idDeposito) VALUES ('Depósito B', 'Producto 3', 103, 4);";
@@ -410,7 +397,6 @@ public class Main {
             String insert7 = "INSERT INTO DepositosporProducto (nombreDeposito, nombreProducto, idProducto, idDeposito) VALUES ('Depósito D', 'Producto 1', 101, 7);";
             String insert8 = "INSERT INTO DepositosporProducto (nombreDeposito, nombreProducto, idProducto, idDeposito) VALUES ('Depósito D', 'Producto 4', 104, 8);";
 
-            // Execute each insert statement
             session.execute(SimpleStatement.newInstance(insert1));
             session.execute(SimpleStatement.newInstance(insert2));
             session.execute(SimpleStatement.newInstance(insert3));
@@ -419,6 +405,7 @@ public class Main {
             session.execute(SimpleStatement.newInstance(insert6));
             session.execute(SimpleStatement.newInstance(insert7));
             session.execute(SimpleStatement.newInstance(insert8));
+		
 	} catch (Exception e) {
 		   System.out.println("Failed to insert data: " + e.getMessage());
 	}
@@ -466,7 +453,6 @@ public class Main {
 			  }
           
           try {
-          // Insert mock data into the table
           String insertDataQuery1 = 
               "INSERT INTO PedidosPorEnvio (idEnvio, idPedido, fecha, nombreCliente) VALUES (1, 101, '2024-11-10 10:00:00', 'Client A');";
           String insertDataQuery2 = 
@@ -478,7 +464,6 @@ public class Main {
           String insertDataQuery5 = 
               "INSERT INTO PedidosPorEnvio (idEnvio, idPedido, fecha, nombreCliente) VALUES (3, 105, '2024-11-10 14:00:00', 'Client E');";
 
-          // Execute the insert statements
           session.execute(SimpleStatement.newInstance(insertDataQuery1));
           session.execute(SimpleStatement.newInstance(insertDataQuery2));
           session.execute(SimpleStatement.newInstance(insertDataQuery3));
@@ -514,8 +499,6 @@ public class Main {
 	
 	public static void Ejercicio_2_Datos(CqlSession session) {
 		
-		  // Creo la Tabla
-		
 		  String createTableQuery =
                 "CREATE TABLE IF NOT EXISTS PedidosPorProducto (" +
                 "idProducto INT, " +
@@ -548,7 +531,6 @@ public class Main {
              String insertDataQuery5 = 
                  "INSERT INTO PedidosPorProducto (idProducto, nombreProducto, idPedido, nombreCliente, fecha, estado) VALUES (5, 'Product C', 105, 'Client 5', '2024-11-10 14:00:00', 'Pending');";
 
-             // Execute the insert statements
              session.execute(SimpleStatement.newInstance(insertDataQuery1));
              session.execute(SimpleStatement.newInstance(insertDataQuery2));
              session.execute(SimpleStatement.newInstance(insertDataQuery3));
@@ -563,21 +545,15 @@ public class Main {
 	
 	public static void Ejercicio_1(CqlSession session, String nombreProducto, String nombreDeposito) {
 		
-		// Filter by `nombreDeposito` and `nombreProducto`
 		String selectQuery = "SELECT * FROM products WHERE nombreDeposito = ? AND nombreProducto = ?;";
 		
-		// String selectQuery = "SELECT * FROM products WHERE nombreDeposito = '" + nombreDeposito + "' AND nombreProducto = '" + nombreProducto + "';"; ALTERNATIVA más simple
-		
-		// Prepare the statement
 		SimpleStatement selectStatement = SimpleStatement.builder(selectQuery)
-		        .addPositionalValue(nombreDeposito)  // Bind the value for nombreDeposito
-		        .addPositionalValue(nombreProducto)  // Bind the value for nombreProducto
+		        .addPositionalValue(nombreDeposito)  
+		        .addPositionalValue(nombreProducto)  
 		        .build();
 
-		// Execute the query
 		ResultSet resultSet = session.execute(selectStatement);
 
-		// Iterate over the results and print them
 		for (Row row : resultSet) {
 			System.out.println("-----------------------------------------------------");
 		    System.out.println("ID del Deposito: " + row.getUuid("idDeposito"));
@@ -592,8 +568,6 @@ public class Main {
 	}
 	
 	public static void Ejercicio_1_Datos (CqlSession session) {
-		
-		// Create Table
 		 
 		String createTableQuery =
 		 "CREATE TABLE IF NOT EXISTS products (idProducto UUID, nombreProducto TEXT, Descripción TEXT, idDeposito UUID, nombreDeposito TEXT, Ubicación TEXT, PRIMARY KEY ((nombreDeposito, nombreProducto), idDeposito, idProducto));"
@@ -606,7 +580,6 @@ public class Main {
 			  System.out.println("Table already exists"); 
 			  }
 		  
-		  // Insert Data
 		   String insertDataQuery1 =
 		   "INSERT INTO products (idProducto, nombreProducto, Descripcion, idDeposito, nombreDeposito, Ubicacion) VALUES (uuid(), 'Banana Cavendish', 'Bananas', uuid(), 'Deposito Pepe', 'Av.Corrientes 1150');"
 		   ;
@@ -636,34 +609,29 @@ public class Main {
 }
 
 
-
-
-
-
-
-
 /*
- * // CQL statement to create the keyspace
- * String createKeyspaceQuery = "CREATE KEYSPACE IF NOT EXISTS " + keyspace +
- * " WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};";
- * SimpleStatement createKeyspaceStatement =
- * SimpleStatement.builder(createKeyspaceQuery).build();
- * session.execute(createKeyspaceStatement);
- * System.out.println("Keyspace created: " + keyspace);
+  CQL statement to create the keyspace
+  String createKeyspaceQuery = "CREATE KEYSPACE IF NOT EXISTS " + keyspace +
+  " WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};";
+  SimpleStatement createKeyspaceStatement =
+  SimpleStatement.builder(createKeyspaceQuery).build();
+  session.execute(createKeyspaceStatement);
+  System.out.println("Keyspace created: " + keyspace);
  */
 
 /*
- * 
- * for (Row row : resultSet) {
- * System.out.println(row.getString("table_name"));
- * }
+ 
+  for (Row row : resultSet) {
+  System.out.println(row.getString("table_name"));
+  }
+  
  */
 
 /*
- * String query =
- * "SELECT table_name FROM system_schema.tables WHERE keyspace_name = '" +
- * keyspace + "';";
- * SimpleStatement statement = SimpleStatement.builder(query).build();
- * ResultSet resultSet = session.execute(statement);
- * 
+  String query =
+  "SELECT table_name FROM system_schema.tables WHERE keyspace_name = '" +
+  keyspace + "';";
+  SimpleStatement statement = SimpleStatement.builder(query).build();
+  ResultSet resultSet = session.execute(statement);
+ 
  */
